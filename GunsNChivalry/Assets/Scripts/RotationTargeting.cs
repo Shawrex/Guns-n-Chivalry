@@ -14,13 +14,14 @@ public class RotationTargeting : MonoBehaviour
 
     void LateUpdate()
     {
-        GameObject[] enemies = EnemyManaging.instance.enemies;
+        List<GameObject> enemies = EnemyManaging.instance.enemies;
 
-        if (targeting == "first")
+        if (targeting == "first" && enemies.Count > 0)
         {
             target = enemies[0];
         }
-
-        transform.up = target.transform.position;
+        
+        if (target != null)
+            transform.up = target.transform.position;
     }
 }
