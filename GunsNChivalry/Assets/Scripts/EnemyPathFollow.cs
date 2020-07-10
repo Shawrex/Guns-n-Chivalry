@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class EnemyPathFollow : MonoBehaviour
@@ -18,16 +19,35 @@ public class EnemyPathFollow : MonoBehaviour
         if (c.CompareTag("Point"))
         {
             if (lastPoint == EnemyManaging.instance.pathPoints.Length - 1)
-                Destroy(gameObject);
+                Die(); //Life--;
             else
                 lastPoint++;
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.CompareTag("Bullet"))
+        {
+            Die(); //Score++;
+            Destroy(c.gameObject);
+        }
+    }
+
+    void Die()
+    {
+        //Life decreses
+        EnemyManaging.instance.enemies.Remove(gameObject);
+        Destroy(gameObject);
+    }
+
     private void Update()
     {
-        Vector2 moveDir = EnemyManaging.instance.pathPoints[lastPoint].position - transform.position;
-        moveVec = moveDir.normalized * moveSpeed;
+        if (lastPoint >= 0)
+        {
+            Vector2 moveDir = EnemyManaging.instance.pathPoints[lastPoint].position - transform.position;
+            moveVec = moveDir.normalized * moveSpeed;
+        }
 
         transform.up = moveVec;
     }

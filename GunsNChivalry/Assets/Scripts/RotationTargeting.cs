@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotationTargeting : MonoBehaviour
 {
     private string targeting;
-    private GameObject target;
+    public GameObject target;
 
     private void Start()
     {
