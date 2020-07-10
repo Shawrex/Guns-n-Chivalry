@@ -5,10 +5,14 @@ using UnityEngine;
 public class EnemyManaging : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemiesPrefabs = null;
+
     [SerializeField] private float spawnTime = 0f;
+    [SerializeField] private int waveSpawnCount = 3;
+    private int spawnCount = 0;
+
     public List<GameObject> enemies;
 
-    [SerializeField] private Transform[] pathPoints = null;
+    public Transform[] pathPoints = null;
 
     public static EnemyManaging instance;
 
@@ -16,6 +20,8 @@ public class EnemyManaging : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+
+        spawnCount = waveSpawnCount;
 
         StartCoroutine(SpawnTimer());
     }
@@ -28,9 +34,12 @@ public class EnemyManaging : MonoBehaviour
 
     private void Spawn()
     {
+        spawnCount--;
+
         GameObject e = Instantiate(enemiesPrefabs[Random.Range(0, enemiesPrefabs.Length)], pathPoints[0].position, Quaternion.identity);
         enemies.Add(e);
 
-        StartCoroutine(SpawnTimer());
+        if (spawnCount > 0)
+            StartCoroutine(SpawnTimer());
     }
 }
