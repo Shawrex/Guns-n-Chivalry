@@ -19,6 +19,7 @@ public class EnemyManaging : MonoBehaviour
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(8, 9);
 
         if (instance == null)
             instance = this;
