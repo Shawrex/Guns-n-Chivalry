@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class EnemyPathFollow : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 0f;
-    [SerializeField] private int lastPoint = 1;
+    [SerializeField] private int lastPoint = 0;
+    public long distance;
     private Vector2 moveVec;
     private Rigidbody2D rb;
 
@@ -55,5 +57,6 @@ public class EnemyPathFollow : MonoBehaviour
     private void FixedUpdate()
     {
         rb.position += moveVec * Time.fixedDeltaTime;
+        distance += (long)Math.Abs(moveVec.magnitude);
     }
 }
