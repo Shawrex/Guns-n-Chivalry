@@ -31,8 +31,8 @@ public class EnemyPathFollow : MonoBehaviour
     {
         if (c.gameObject.CompareTag("Bullet"))
         {
-            Die(); //Score++;
-            Destroy(c.gameObject);
+            Die();
+            ScoreScript.instance.ChangeScore(1);
         }
     }
 
