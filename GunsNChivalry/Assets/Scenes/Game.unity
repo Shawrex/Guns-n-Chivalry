@@ -643,6 +643,11 @@ MonoBehaviour:
   - {fileID: 1954659454867076786, guid: 0cf7f3e20c0eb45488138c21e632e032, type: 3}
   - {fileID: 1056838388005999790, guid: 832bb3ab55789614aadafa9bfc62c442, type: 3}
   - {fileID: 5572242460936269263, guid: 0c2daad778cda3442b8d048d2d352304, type: 3}
+  uRoom: {fileID: 1607916808904595810, guid: 4e51264213e95ee4d89234897ca6002e, type: 3}
+  dRoom: {fileID: 4738908152613631513, guid: 5733ec521a66cc34394679961db40a37, type: 3}
+  lRoom: {fileID: 6400043862094876258, guid: 1d8ab9bc85eac004299b74ab6bd89cd5, type: 3}
+  rRoom: {fileID: 612042666736617889, guid: 88b53ce33de799246ada2d80859f1e15, type: 3}
+  roomsSpawned: []
 --- !u!1 &661431355
 GameObject:
   m_ObjectHideFlags: 0
