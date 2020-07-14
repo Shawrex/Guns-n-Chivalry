@@ -18,7 +18,10 @@ public class PathAndWaveGeneration : MonoBehaviour
         for (int i = 0; i < pathNumbers; i++)
         {
             if (i == 0 || i == pathNumbers - 1)
-                pos = children[Random.Range(0, children.Length)].position;
+            {
+                pos = children[Random.Range(1, children.Length)].position.normalized;
+                pos = new Vector2(pos.x * 9.1f, pos.y * 5.1f);
+            }
             else
                 pos = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f));
 
@@ -28,7 +31,7 @@ public class PathAndWaveGeneration : MonoBehaviour
             roomPath.Add(p.transform);
         }
 
-        for (int i = 0; i < roomPath.Count - 1; i++)
+        for (int i = 0; i < pathNumbers - 1; i++)
         {
             Vector2 pos1 = roomPath[i].localPosition;
             Vector2 pos2 = roomPath[i + 1].localPosition;
@@ -37,6 +40,8 @@ public class PathAndWaveGeneration : MonoBehaviour
             r.transform.localPosition = (pos1 + pos2) / 2f;
             r.transform.right = pos1 - pos2;
             r.transform.localScale = new Vector3(Vector2.Distance(pos1, pos2), 0.1f, 1f);
+            Vector3 color = new Vector3(1f / pathNumbers * (i + 1f), 1f / (i + 1f), 0f).normalized * 1.5f;
+            r.GetComponent<SpriteRenderer>().color = new Color(color.x , color.y, color.z);
             roomPathRender.Add(r);
         }
     }
