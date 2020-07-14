@@ -8,9 +8,9 @@ public class RoomsTemplates : MonoBehaviour
     public GameObject[] uRooms, dRooms, lRooms,  rRooms; //Rooms with Up , Down , Left , Right doors to spawn;
     public GameObject uRoom, dRoom, lRoom, rRoom; //Rooms used to stop spawning more and close the dungeon;
 
-    [NonSerialized] public List<GameObject> roomsSpawned; //List of rooms spawned
+    public List<GameObject> roomsSpawned; //List of rooms spawned
 
-    public static RoomsTemplates instance; //This
+    [NonSerialized] public static RoomsTemplates instance; //This
 
     private void Awake()
     {
