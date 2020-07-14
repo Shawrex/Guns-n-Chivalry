@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4220233916527169829}
   m_Layer: 0
   m_Name: UR
-  m_TagString: SpawnPoints
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!50 &6734957092892788598
 Rigidbody2D:
   serializedVersion: 4
@@ -274,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!50 &3881262253187028536
 Rigidbody2D:
   serializedVersion: 4

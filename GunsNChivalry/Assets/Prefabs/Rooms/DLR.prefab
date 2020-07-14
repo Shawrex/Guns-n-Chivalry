@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!61 &8314784660985065717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105,7 +106,7 @@ GameObject:
   - component: {fileID: -7022608176977258656}
   m_Layer: 0
   m_Name: DLR
-  m_TagString: SpawnPoints
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!61 &5931345795297563059
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -341,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!61 &8203091337936574540
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
+    public bool spawned = false;
     private int placement; //0 = U , 1 = D, 2 = L, 3 = R
     private GameObject roomToSpawn; //The room template I'll spawn
     private RoomsTemplates roomsTemplates; //All the rooms templates
@@ -22,14 +24,16 @@ public class RoomSpawner : MonoBehaviour
         else if (pos.x > 0)
             placement = 3; //Right 
 
-        Invoke("Spawn", 0.1f);
+        StartCoroutine(Spawn());
     }
 
-    void Spawn()
+    IEnumerator Spawn()
     {
         roomsTemplates = RoomsTemplates.instance; //Get all the templates
 
-        if (roomsTemplates.roomsSpawned.Count < 20)
+        yield return new WaitForSeconds(0.1f);
+
+        if (roomsTemplates.roomsSpawned.Count < 20 && !spawned)
         {
             switch (placement)
             {
@@ -45,9 +49,16 @@ public class RoomSpawner : MonoBehaviour
                 case 3: //Need to spawn a L room
                     roomToSpawn = roomsTemplates.lRooms[Random.Range(0, roomsTemplates.dRooms.Length)];
                     break;
-            }    
+            }
+
+            //Spawn my room
+            myRoom = Instantiate(roomToSpawn, transform.position, Quaternion.identity);
+            spawned = true;
+
+            //Add my room to the list of rooms
+            roomsTemplates.roomsSpawned.Add(myRoom);
         }
-        else
+        else if (!spawned)
         {
             switch (placement)
             {
@@ -64,18 +75,30 @@ public class RoomSpawner : MonoBehaviour
                     roomToSpawn = roomsTemplates.lRoom;
                     break;
             }
+
+            //Spawn my room
+            myRoom = Instantiate(roomToSpawn, transform.position, Quaternion.identity);
+            spawned = true;
+
+            //Add my room to the list of rooms
+            roomsTemplates.roomsSpawned.Add(myRoom);
         }
-
-        //Spawn my room
-        myRoom = Instantiate(roomToSpawn, transform.position, Quaternion.identity);
-
-        //Add my room to the list of rooms
-        roomsTemplates.roomsSpawned.Add(myRoom);
     }
 
     private void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.CompareTag("SpawnPoints"))
+        if (c.CompareTag("Room"))
             Destroy(gameObject); //Destroy to cancel room flood
+        else if (c.CompareTag("SpawnPoints"))
+        {
+            RoomSpawner other = c.GetComponent<RoomSpawner>();
+
+            if (!other.spawned && !spawned)
+            {
+                Debug.Log("Conflict");
+                spawned = true;
+                Destroy(gameObject, 2f);
+            }
+        }
     }
 }

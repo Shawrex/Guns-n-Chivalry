@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!50 &4313873600766359924
 Rigidbody2D:
   serializedVersion: 4
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!50 &4135105623005918091
 Rigidbody2D:
   serializedVersion: 4
@@ -197,7 +199,7 @@ GameObject:
   - component: {fileID: 9052724813152411114}
   m_Layer: 0
   m_Name: UDL
-  m_TagString: SpawnPoints
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e16f4bfc2ddd47921836d155fc186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawned: 0
 --- !u!50 &7251569935490851058
 Rigidbody2D:
   serializedVersion: 4
