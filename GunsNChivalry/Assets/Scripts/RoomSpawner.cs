@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
-    private int placement = 0; //ex : 0 = U -> Need D Door
-    private RoomsTemplates rt; //All the rooms templates
-    private static int rooms; //The number of rooms spawned ( to keep an -okay- dungeon )
-    private GameObject r; //The room that i'll spawn;
+    private int placement; //0 = U , 1 = D, 2 = L, 3 = R
+    private GameObject roomToSpawn; //The room template I'll spawn
+    private RoomsTemplates roomsTemplates; //All the rooms templates
+    private GameObject myRoom; //The room tspawned;
 
     private void Start()
     {
@@ -27,54 +27,55 @@ public class RoomSpawner : MonoBehaviour
 
     void Spawn()
     {
-        rt = RoomsTemplates.instance; //Reference to the only one rooms templates script ( a sort of database )
+        roomsTemplates = RoomsTemplates.instance; //Get all the templates
 
-        if (placement == 0)
+        if (roomsTemplates.roomsSpawned.Count < 20)
         {
-            //Need a room with a Down door
-
-            if (rooms < 20) //If there isn't that much rooms , i can sawn randomly
-                r = Instantiate(rt.dRooms[Random.Range(0, rt.dRooms.Length)], transform.position, Quaternion.identity); //randomly
-            else
-                r = Instantiate(rt.dRoom, transform.position, Quaternion.identity); //No more exits
-
+            switch (placement)
+            {
+                case 0: //Need to spawn a D room
+                    roomToSpawn = roomsTemplates.dRooms[Random.Range(0, roomsTemplates.dRooms.Length)];
+                    break;
+                case 1: //Need to spawn a U room
+                    roomToSpawn = roomsTemplates.uRooms[Random.Range(0, roomsTemplates.dRooms.Length)];
+                    break;
+                case 2: //Need to spawn a R room
+                    roomToSpawn = roomsTemplates.rRooms[Random.Range(0, roomsTemplates.dRooms.Length)];
+                    break;
+                case 3: //Need to spawn a L room
+                    roomToSpawn = roomsTemplates.lRooms[Random.Range(0, roomsTemplates.dRooms.Length)];
+                    break;
+            }    
         }
-        else if (placement == 1)
+        else
         {
-            //Need a room with a Up door
-
-            if (rooms < 20)
-                r = Instantiate(rt.uRooms[Random.Range(0, rt.uRooms.Length)], transform.position, Quaternion.identity); //randomly
-            else
-                r = Instantiate(rt.uRoom, transform.position, Quaternion.identity); //No more exits
-        }
-        else if (placement == 2)
-        {
-            //Need a room with a Right door
-
-            if (rooms < 20)
-                r = Instantiate(rt.rRooms[Random.Range(0, rt.rRooms.Length)], transform.position, Quaternion.identity); //randomly
-            else
-                r = Instantiate(rt.rRoom, transform.position, Quaternion.identity); //No more exits
-        }
-        else if (placement == 3)
-        {
-            //Need a room with a Left door
-
-            if (rooms < 20)
-                r = Instantiate(rt.lRooms[Random.Range(0, rt.lRooms.Length)], transform.position, Quaternion.identity); //randomly
-            else
-                r = Instantiate(rt.lRoom, transform.position, Quaternion.identity); //No more exits
+            switch (placement)
+            {
+                case 0: //Need to spawn a D room CLOSED
+                    roomToSpawn = roomsTemplates.dRoom;
+                    break;
+                case 1: //Need to spawn a U room CLOSED
+                    roomToSpawn = roomsTemplates.uRoom;
+                    break;
+                case 2: //Need to spawn a R room CLOSED
+                    roomToSpawn = roomsTemplates.rRoom;
+                    break;
+                case 3: //Need to spawn a L room CLOSED
+                    roomToSpawn = roomsTemplates.lRoom;
+                    break;
+            }
         }
 
-        rooms++;
+        //Spawn my room
+        myRoom = Instantiate(roomToSpawn, transform.position, Quaternion.identity);
 
-        rt.roomsSpawned.Add(r);
+        //Add my room to the list of rooms
+        roomsTemplates.roomsSpawned.Add(myRoom);
     }
 
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("SpawnPoints"))
-            Destroy(gameObject); //If I encounter another point or a room , destroy myself
+            Destroy(gameObject); //Destroy to cancel room flood
     }
 }
