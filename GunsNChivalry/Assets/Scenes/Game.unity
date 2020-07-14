@@ -486,6 +486,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -648,6 +649,44 @@ MonoBehaviour:
   lRoom: {fileID: 6400043862094876258, guid: 1d8ab9bc85eac004299b74ab6bd89cd5, type: 3}
   rRoom: {fileID: 612042666736617889, guid: 88b53ce33de799246ada2d80859f1e15, type: 3}
   roomsSpawned: []
+--- !u!60 &519420035
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -9, y: 5}
+      - {x: 9, y: 5}
+      - {x: 9, y: -5}
+      - {x: 0, y: -5}
+      - {x: 0, y: -4}
+      - {x: 8, y: -4}
+      - {x: 8, y: 4}
+      - {x: -8, y: 4}
+      - {x: -8, y: -4}
+      - {x: 0, y: -4}
+      - {x: 0, y: -5}
+      - {x: -9, y: -5}
+      - {x: -9, y: -5}
 --- !u!1 &661431355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1245,7 @@ PrefabInstance:
     - target: {fileID: 4981594739866773427, guid: 238ea3c3af86ef2438eafcea2c6536fc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4981594739866773427, guid: 238ea3c3af86ef2438eafcea2c6536fc,
         type: 3}

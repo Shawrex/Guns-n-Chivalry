@@ -26,5 +26,11 @@ public class RoomsTemplates : MonoBehaviour
     {
         //Turn the last room spawned to red ( later in a boss )
         roomsSpawned[roomsSpawned.Count - 1].GetComponent<SpriteRenderer>().color = Color.red;
+        
+        //Destroy all rooms triggers
+        foreach (GameObject r in roomsSpawned)
+        {
+            r.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 }
