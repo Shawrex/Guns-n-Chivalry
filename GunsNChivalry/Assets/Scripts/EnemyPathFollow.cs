@@ -20,9 +20,9 @@ public class EnemyPathFollow : MonoBehaviour
     {
         if (c.CompareTag("Point"))
         {
-            if (lastPoint == EnemyManaging.instance.pathPoints.Length - 1)
+            if (lastPoint == PathAndWaveGeneration.instance.roomPath.Count - 1)
                 Die(); //Life--;
-            else
+            else if (PathAndWaveGeneration.instance.roomPath.IndexOf(c.transform) >= lastPoint)
                 lastPoint++;
         }
     }
@@ -38,8 +38,7 @@ public class EnemyPathFollow : MonoBehaviour
 
     void Die()
     {
-        //Life decreses
-        EnemyManaging.instance.enemies.Remove(gameObject);
+        //Life decreases
         Destroy(gameObject);
     }
 
@@ -47,7 +46,7 @@ public class EnemyPathFollow : MonoBehaviour
     {
         if (lastPoint >= 0)
         {
-            Vector2 moveDir = EnemyManaging.instance.pathPoints[lastPoint].position - transform.position;
+            Vector2 moveDir = PathAndWaveGeneration.instance.roomPath[lastPoint].position - transform.position;
             moveVec = moveDir.normalized * moveSpeed;
         }
 

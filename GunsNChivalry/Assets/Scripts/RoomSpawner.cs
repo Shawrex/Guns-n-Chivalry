@@ -95,7 +95,6 @@ public class RoomSpawner : MonoBehaviour
 
             if (!other.spawned && !spawned)
             {
-                Debug.Log("Conflict");
                 spawned = true;
                 Destroy(gameObject, 2f);
             }

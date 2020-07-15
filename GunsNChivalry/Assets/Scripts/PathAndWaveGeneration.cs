@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PathAndWaveGeneration : MonoBehaviour
 {
+    public static PathAndWaveGeneration instance = null;
+
+    [Header("Path")]
     [SerializeField] private int pathNumbers = 0;
     public List<Transform> roomPath = null;
     public List<GameObject> roomPathRender = null;
@@ -11,8 +14,16 @@ public class PathAndWaveGeneration : MonoBehaviour
     [SerializeField] private GameObject pathPoint = null;
     [SerializeField] private GameObject pathRender = null;
 
+    [Header("Wave")]
+    [SerializeField] private GameObject[] enemiesPrefabs = null;
+    [SerializeField] private float spawnTime = 0f;
+    [SerializeField] private int waveSpawnCount = 0;
+
     void Start()
     {
+        if (instance == null)
+            instance = this;
+
         Transform[] children = GetComponentsInChildren<Transform>();
 
         for (int i = 0; i < pathNumbers; i++)
@@ -43,6 +54,23 @@ public class PathAndWaveGeneration : MonoBehaviour
             Vector3 color = new Vector3(1f / pathNumbers * (i + 1f), 1f / (i + 1f), 0f).normalized * 1.5f;
             r.GetComponent<SpriteRenderer>().color = new Color(color.x , color.y, color.z);
             roomPathRender.Add(r);
+        }
+
+        Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(8, 9);
+
+        //FOR TEST PURPOSE ONLY
+        StartCoroutine(Wave());
+    }
+
+    public void PlayWave() => StartCoroutine(Wave());
+
+    private IEnumerator Wave()
+    {
+        for (int i = 0; i < waveSpawnCount; i++)
+        {
+            yield return new WaitForSeconds(spawnTime);
+            Instantiate(enemiesPrefabs[0], roomPath[0].position, Quaternion.identity);
         }
     }
 }
