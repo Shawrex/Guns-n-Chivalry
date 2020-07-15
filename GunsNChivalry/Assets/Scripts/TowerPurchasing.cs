@@ -26,6 +26,9 @@ public class TowerPurchasing : MonoBehaviour
 
     private void Start()
     {
+        Physics2D.IgnoreLayerCollision(0, 10);
+        Physics2D.IgnoreLayerCollision(9, 10);
+
         //Create an object that will follow the mouse BUT desactivate it
         cursorObjectRenderer = cursorObject.GetComponent<SpriteRenderer>();
         cursorObject.SetActive(false);

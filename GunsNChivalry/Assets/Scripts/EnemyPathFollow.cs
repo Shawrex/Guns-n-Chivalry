@@ -22,7 +22,7 @@ public class EnemyPathFollow : MonoBehaviour
         {
             if (lastPoint == PathAndWaveGeneration.instance.roomPath.Count - 1)
                 Die(); //Life--;
-            else if (PathAndWaveGeneration.instance.roomPath.IndexOf(c.transform) >= lastPoint)
+            else if (PathAndWaveGeneration.instance.roomPath.IndexOf(c.transform) == lastPoint)
                 lastPoint++;
         }
     }

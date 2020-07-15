@@ -58,7 +58,7 @@ public class ShootingTargeting : MonoBehaviour
         }
 
         if (target != null)
-            transform.up = target.transform.position - transform.position;
+            transform.up = (Vector2)(target.transform.position - transform.position);
     }
     private void OnDrawGizmosSelected()
     {

@@ -19,6 +19,8 @@ public class BulletScript : MonoBehaviour
     {
         if (c.gameObject.CompareTag("Enemy"))
             pierce--;
+        else
+            Destroy(gameObject);
     }
 
 }

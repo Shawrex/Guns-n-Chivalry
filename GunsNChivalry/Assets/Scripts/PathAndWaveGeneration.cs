@@ -18,6 +18,7 @@ public class PathAndWaveGeneration : MonoBehaviour
     [SerializeField] private GameObject[] enemiesPrefabs = null;
     [SerializeField] private float spawnTime = 0f;
     [SerializeField] private int waveSpawnCount = 0;
+    private bool spawned = false;
 
     void Start()
     {
@@ -60,17 +61,22 @@ public class PathAndWaveGeneration : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 9);
 
         //FOR TEST PURPOSE ONLY
-        StartCoroutine(Wave());
+        //StartCoroutine(Wave());
     }
 
     public void PlayWave() => StartCoroutine(Wave());
 
     private IEnumerator Wave()
     {
-        for (int i = 0; i < waveSpawnCount; i++)
+        if (!spawned)
         {
-            yield return new WaitForSeconds(spawnTime);
-            Instantiate(enemiesPrefabs[0], roomPath[0].position, Quaternion.identity);
+            for (int i = 0; i < waveSpawnCount; i++)
+            {
+                yield return new WaitForSeconds(spawnTime);
+                Instantiate(enemiesPrefabs[0], roomPath[0].position, Quaternion.identity);
+            }
+
+            spawned = true;
         }
     }
 }
