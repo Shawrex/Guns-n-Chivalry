@@ -13,7 +13,10 @@ public class TowerPurchasing : MonoBehaviour
 
     [Header("Misc")]
     [SerializeField] private GameObject cursorObject = null;
+    [SerializeField] private GameObject playerRange = null;
+    [SerializeField] private float distanceToPlayer = 0f;
     private SpriteRenderer cursorObjectRenderer;
+    private GameObject player;
     [NonSerialized] public static TowerPurchasing instance;
     [NonSerialized] public bool placeable = true;
 
@@ -26,12 +29,14 @@ public class TowerPurchasing : MonoBehaviour
 
     private void Start()
     {
-        Physics2D.IgnoreLayerCollision(0, 10);
+        //Physics2D.IgnoreLayerCollision(0, 10);
         Physics2D.IgnoreLayerCollision(9, 10);
 
         //Create an object that will follow the mouse BUT desactivate it
         cursorObjectRenderer = cursorObject.GetComponent<SpriteRenderer>();
         cursorObject.SetActive(false);
+
+        player = GameObject.Find("Player");
     }
 
     public void BuyTower(string towerName)
@@ -42,6 +47,7 @@ public class TowerPurchasing : MonoBehaviour
             //Set the sprite of the object that follows mouse to the knight and activate it
             cursorObjectRenderer.sprite = knight;
             cursorObject.SetActive(true);
+            playerRange.SetActive(true);
         }
     }
 
@@ -52,7 +58,13 @@ public class TowerPurchasing : MonoBehaviour
         {
             //Move it to the mouse each frame
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            cursorObject.transform.position = mousePos;
+            Vector2 offsetPos = mousePos - (Vector2)player.transform.position;
+            
+            if (offsetPos.magnitude <= distanceToPlayer)
+                cursorObject.transform.position = (Vector2)player.transform.position + offsetPos;
+            else
+                cursorObject.transform.position = (Vector2)player.transform.position + offsetPos.normalized * distanceToPlayer;
+
 
             //If the tower cant be placed then turn it red
             if (!placeable)
@@ -74,6 +86,7 @@ public class TowerPurchasing : MonoBehaviour
 
                 //Desacitvate the object
                 cursorObject.SetActive(false);
+                playerRange.SetActive(false);
             }
 
             //If I right click
@@ -81,6 +94,7 @@ public class TowerPurchasing : MonoBehaviour
             {
                 //Desactivate the object to cancel the buy
                 cursorObject.SetActive(false);
+                playerRange.SetActive(false);
             }
         }
     }

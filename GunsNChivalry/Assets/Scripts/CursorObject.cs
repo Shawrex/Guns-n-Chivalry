@@ -10,6 +10,7 @@ public class CursorObject : MonoBehaviour
     private void Start() => tp = TowerPurchasing.instance;
 
     private void OnTriggerEnter2D(Collider2D c) => tp.placeable = false;
+    private void OnTriggerStay2D(Collider2D c) => tp.placeable = false;
 
     private void OnTriggerExit2D(Collider2D c) => tp.placeable = true;
 }

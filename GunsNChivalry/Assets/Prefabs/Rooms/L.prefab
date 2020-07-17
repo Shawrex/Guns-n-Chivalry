@@ -104,6 +104,8 @@ GameObject:
   - component: {fileID: 6751125168539072319}
   - component: {fileID: 3806342708537800416}
   - component: {fileID: -7507388572956924152}
+  - component: {fileID: 6114522302826812529}
+  - component: {fileID: 5282690089782473969}
   m_Layer: 0
   m_Name: L
   m_TagString: Room
@@ -167,7 +169,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 5189514969716678368, guid: 0382d137aaab6d24f87db634f014e18d,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -203,3 +205,81 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!60 &6114522302826812529
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400043862094876258}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 18, y: 10}
+    newSize: {x: 18, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -9, y: 5}
+      - {x: -9, y: 1}
+      - {x: -8, y: 1}
+      - {x: -8, y: 4}
+      - {x: 8, y: 4}
+      - {x: 8, y: -4}
+      - {x: -8, y: -4}
+      - {x: -8, y: -1}
+      - {x: -9, y: -1}
+      - {x: -9, y: -5}
+      - {x: 9, y: -5}
+      - {x: 9, y: 5}
+--- !u!60 &5282690089782473969
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400043862094876258}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 18, y: 10}
+    newSize: {x: 18, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -9, y: 1}
+      - {x: -9, y: -1}
+      - {x: -8.5, y: -1}
+      - {x: -8.5, y: 1}
+    - - {x: 9, y: 1}
+      - {x: 9, y: -1}
+      - {x: 8.5, y: -1}
+      - {x: 8.5, y: 1}
+    - - {x: 1, y: -5}
+      - {x: -1, y: -5}
+      - {x: -1, y: -4.5}
+      - {x: 1, y: -4.5}
+    - - {x: 1, y: 5}
+      - {x: -1, y: 5}
+      - {x: -1, y: 4.5}
+      - {x: 1, y: 4.5}

@@ -57,6 +57,7 @@ public class PathAndWaveGeneration : MonoBehaviour
             roomPathRender.Add(r);
         }
 
+        Physics2D.IgnoreLayerCollision(0, 8);
         Physics2D.IgnoreLayerCollision(8, 8);
         Physics2D.IgnoreLayerCollision(8, 9);
 
