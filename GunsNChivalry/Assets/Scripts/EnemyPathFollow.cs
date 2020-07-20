@@ -10,19 +10,21 @@ public class EnemyPathFollow : MonoBehaviour
     public long distance;
     private Vector2 moveVec;
     private Rigidbody2D rb;
+    PathAndWaveGeneration room;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        room = RoomsTemplates.instance.roomsSpawned[RoomsTemplates.instance.currentRoom].GetComponent<PathAndWaveGeneration>();
     }
 
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("Point"))
         {
-            if (lastPoint == PathAndWaveGeneration.instance.roomPath.Count - 1)
+            if (lastPoint == room.roomPath.Count - 1)
                 Die(); //Life--;
-            else if (PathAndWaveGeneration.instance.roomPath.IndexOf(c.transform) == lastPoint)
+            else if (room.roomPath.IndexOf(c.transform) == lastPoint)
                 lastPoint++;
         }
     }
@@ -46,7 +48,7 @@ public class EnemyPathFollow : MonoBehaviour
     {
         if (lastPoint >= 0)
         {
-            Vector2 moveDir = PathAndWaveGeneration.instance.roomPath[lastPoint].position - transform.position;
+            Vector2 moveDir = room.roomPath[lastPoint].position - transform.position;
             moveVec = moveDir.normalized * moveSpeed;
         }
 

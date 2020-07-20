@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6626457925697611839}
   - component: {fileID: 8241610742365497932}
   - component: {fileID: 2320737598748436624}
+  - component: {fileID: 8185623214358410868}
   m_Layer: 0
   m_Name: DL
   m_TagString: Room
@@ -195,6 +196,29 @@ PolygonCollider2D:
       - {x: -1, y: 5}
       - {x: -1, y: 4.5}
       - {x: 1, y: 4.5}
+--- !u!114 &8185623214358410868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2589942098864084204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc1d7b7d26b2af4f8e584cf722734c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathNumbers: 7
+  roomPath: []
+  roomPathRender: []
+  pathPoint: {fileID: 8626534934163800189, guid: 3b33a2b83f5d1b44894021c9d0b4e9e5,
+    type: 3}
+  pathRender: {fileID: 7055787699045666472, guid: 16847959c99f4744794296d614b82345,
+    type: 3}
+  enemiesPrefabs:
+  - {fileID: 7572010606446714288, guid: 2876400b20e9a394c9543f021aa77a10, type: 3}
+  spawnTime: 0.5
+  waveSpawnCount: 20
 --- !u!1 &3431567754376951576
 GameObject:
   m_ObjectHideFlags: 0

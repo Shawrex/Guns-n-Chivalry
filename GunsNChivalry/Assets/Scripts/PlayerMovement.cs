@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
             if (index != currentRoom)
             {
                 currentRoom = index;
+                RoomsTemplates.instance.currentRoom = currentRoom;
+                RoomsTemplates.instance.EnteredRoom();
                 Camera.main.transform.position = new Vector3(c.transform.position.x, c.transform.position.y , -10f);
             }
         }

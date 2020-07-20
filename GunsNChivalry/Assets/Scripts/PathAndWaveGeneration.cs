@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PathAndWaveGeneration : MonoBehaviour
 {
-    public static PathAndWaveGeneration instance = null;
-
     [Header("Path")]
     [SerializeField] private int pathNumbers = 0;
     public List<Transform> roomPath = null;
@@ -18,20 +16,18 @@ public class PathAndWaveGeneration : MonoBehaviour
     [SerializeField] private GameObject[] enemiesPrefabs = null;
     [SerializeField] private float spawnTime = 0f;
     [SerializeField] private int waveSpawnCount = 0;
+    private List<GameObject> enemiesSPawned;
     private bool spawned = false;
 
-    void Start()
+    void Awake()
     {
-        if (instance == null)
-            instance = this;
-
         Transform[] children = GetComponentsInChildren<Transform>();
 
         for (int i = 0; i < pathNumbers; i++)
         {
             if (i == 0 || i == pathNumbers - 1)
             {
-                pos = children[Random.Range(1, children.Length)].position.normalized;
+                pos = children[Random.Range(1, children.Length)].localPosition.normalized;
                 pos = new Vector2(pos.x * 9.1f, pos.y * 5.1f);
             }
             else
@@ -61,8 +57,29 @@ public class PathAndWaveGeneration : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 8);
         Physics2D.IgnoreLayerCollision(8, 9);
 
+        if (gameObject.name != "Base")
+            Exited();
+
         //FOR TEST PURPOSE ONLY
         //StartCoroutine(Wave());
+    }
+
+    public void Exited()
+    {
+        foreach (Transform p in roomPath)
+            p.gameObject.SetActive(false);
+
+        foreach (GameObject r in roomPathRender)
+            r.SetActive(false);
+    }
+
+    public void Entered()
+    {
+        foreach (Transform p in roomPath)
+            p.gameObject.SetActive(true);
+
+        foreach (GameObject r in roomPathRender)
+            r.SetActive(true);
     }
 
     public void PlayWave() => StartCoroutine(Wave());
@@ -79,5 +96,8 @@ public class PathAndWaveGeneration : MonoBehaviour
 
             spawned = true;
         }
+
+        foreach (GameObject r in RoomsTemplates.instance.roomsSpawned)
+            r.GetComponents<PolygonCollider2D>()[1].isTrigger = true;
     }
 }

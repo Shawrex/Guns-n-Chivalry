@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RoomsTemplates : MonoBehaviour
 {
-    private int currentRoom = 0;
+    public int currentRoom = 0;
 
     public GameObject[] uRooms, dRooms, lRooms,  rRooms; //Rooms with Up , Down , Left , Right doors to spawn;
     public GameObject uRoom, dRoom, lRoom, rRoom, cRoom; //Rooms used to stop spawning more and close the dungeon;
@@ -38,7 +38,17 @@ public class RoomsTemplates : MonoBehaviour
 
     public void PlayWave()
     {
-        //Get the room//
+        foreach (GameObject r in roomsSpawned)
+            r.GetComponents<PolygonCollider2D>()[1].isTrigger = false;
+
         roomsSpawned[currentRoom].GetComponent<PathAndWaveGeneration>().PlayWave();
+    }
+
+    public void EnteredRoom()
+    {
+        foreach (GameObject r in roomsSpawned)
+            r.GetComponent<PathAndWaveGeneration>().Exited();
+
+        roomsSpawned[currentRoom].GetComponent<PathAndWaveGeneration>().Entered();
     }
 }
