@@ -9,7 +9,7 @@ public class TowerPurchasing : MonoBehaviour
     [SerializeField] private Sprite knight = null;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject knightPrefab = null;
+    [SerializeField] private GameObject turretPrefab = null;
 
     [Header("Misc")]
     [SerializeField] private GameObject cursorObject = null;
@@ -17,6 +17,7 @@ public class TowerPurchasing : MonoBehaviour
     [SerializeField] private float distanceToPlayer = 0f;
     private SpriteRenderer cursorObjectRenderer;
     private GameObject player;
+    public List<GameObject> turrets;
     [NonSerialized] public static TowerPurchasing instance;
     [NonSerialized] public bool placeable = true;
 
@@ -34,7 +35,6 @@ public class TowerPurchasing : MonoBehaviour
 
         //Create an object that will follow the mouse BUT desactivate it
         cursorObjectRenderer = cursorObject.GetComponent<SpriteRenderer>();
-        cursorObject.SetActive(false);
 
         player = GameObject.Find("Player");
     }
@@ -46,7 +46,6 @@ public class TowerPurchasing : MonoBehaviour
         {
             //Set the sprite of the object that follows mouse to the knight and activate it
             cursorObjectRenderer.sprite = knight;
-            cursorObject.SetActive(true);
             playerRange.SetActive(true);
         }
     }
@@ -81,11 +80,12 @@ public class TowerPurchasing : MonoBehaviour
                 {
                     //Change the "score" (money) AND create a knight on the map
                     ScoreScript.instance.ChangeScore(-5);
-                    Instantiate(knightPrefab, cursorObject.transform.position, Quaternion.identity);
+                    GameObject t = Instantiate(turretPrefab, cursorObject.transform.position, Quaternion.identity);
+                    turrets.Add(t);
                 }
 
                 //Desacitvate the object
-                cursorObject.SetActive(false);
+                cursorObjectRenderer.sprite = null;
                 playerRange.SetActive(false);
             }
 
@@ -93,7 +93,7 @@ public class TowerPurchasing : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 //Desactivate the object to cancel the buy
-                cursorObject.SetActive(false);
+                cursorObjectRenderer.sprite = null;
                 playerRange.SetActive(false);
             }
         }

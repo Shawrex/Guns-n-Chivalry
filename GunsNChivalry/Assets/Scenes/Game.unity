@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knight: {fileID: 2323917800338813707, guid: 19111a38c0457d64ab00500453ef99c0, type: 3}
-  knightPrefab: {fileID: 596858520777756536, guid: 1efd603c9d847ad428679a8c917a95a5,
+  turretPrefab: {fileID: 596858520777756536, guid: 1efd603c9d847ad428679a8c917a95a5,
     type: 3}
   cursorObject: {fileID: 1845977926}
   playerRange: {fileID: 997943940}
@@ -1186,6 +1186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598898299000090539, guid: 238ea3c3af86ef2438eafcea2c6536fc,
+        type: 3}
+      propertyPath: pathNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4981594739866773427, guid: 238ea3c3af86ef2438eafcea2c6536fc,
         type: 3}

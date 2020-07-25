@@ -6,6 +6,7 @@ public class ShootingTargeting : MonoBehaviour
 {
     [Header("Tower View")]
     [SerializeField] private float radius = 0;
+    [SerializeField] private GameObject range = null;
     [SerializeField] private string targeting = null;
 
     [Header("Tower Shooting")]
@@ -19,6 +20,11 @@ public class ShootingTargeting : MonoBehaviour
     public GameObject target;
 
     private bool canShoot = true;
+
+    private void Start()
+    {
+        range.transform.localScale = new Vector3(radius*2f, radius*2f, 1f);
+    }
 
     void Update()
     {
@@ -79,4 +85,8 @@ public class ShootingTargeting : MonoBehaviour
 
         canShoot = true;
     }
+
+    public void Selected() => range.SetActive(true);
+
+    public void Unselected() => range.SetActive(false);
 }
