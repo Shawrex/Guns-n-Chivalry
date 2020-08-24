@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour
 {
-    public int score = 0;
+    public int money = 0;
     [SerializeField] private Text scoreText = null;
 
     public static ScoreScript instance;
 
     void Start()
     {
-        scoreText.text = "" + score;
+        scoreText.text = "" + money;
 
         if (instance == null)
             instance = this;
     }
 
-    public void ChangeScore(int amount)
+    public void ChangeScore(string type, int amount)
     { 
-        score += amount;
-        scoreText.text = "" + score;
+        if (type == "money")
+        {
+            money += amount;
+            scoreText.text = "" + money;
+        }
     }
 }

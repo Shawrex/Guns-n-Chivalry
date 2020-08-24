@@ -48,8 +48,6 @@ public class PathAndWaveGeneration : MonoBehaviour
             r.transform.localPosition = (pos1 + pos2) / 2f;
             r.transform.right = pos1 - pos2;
             r.transform.localScale = new Vector3(Vector2.Distance(pos1, pos2), 0.1f, 1f);
-            Vector3 color = new Vector3(1f / pathNumbers * (i + 1f), 1f / (i + 1f), 0f).normalized * 1.5f;
-            r.GetComponent<SpriteRenderer>().color = new Color(color.x , color.y, color.z);
             roomPathRender.Add(r);
         }
 
@@ -91,7 +89,8 @@ public class PathAndWaveGeneration : MonoBehaviour
             for (int i = 0; i < waveSpawnCount; i++)
             {
                 yield return new WaitForSeconds(spawnTime);
-                Instantiate(enemiesPrefabs[0], roomPath[0].position, Quaternion.identity);
+                Vector3 spawn = new Vector3(roomPath[0].position.x, roomPath[0].position.y, roomPath[0].position.z - 1f);
+                Instantiate(enemiesPrefabs[0], spawn, Quaternion.identity);
             }
 
             spawned = true;

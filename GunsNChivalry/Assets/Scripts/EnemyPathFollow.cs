@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyPathFollow : MonoBehaviour
 {
+    [SerializeField] private int life;
     [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private int lastPoint = 0;
     public long distance;
@@ -23,25 +24,21 @@ public class EnemyPathFollow : MonoBehaviour
         if (c.CompareTag("Point"))
         {
             if (lastPoint == room.roomPath.Count - 1)
-                Die(); //Life--;
+                Destroy(gameObject);
             else if (room.roomPath.IndexOf(c.transform) == lastPoint)
                 lastPoint++;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D c)
+    public void TakeDamges(int damages)
     {
-        if (c.gameObject.CompareTag("Bullet"))
-        {
-            Die();
-            ScoreScript.instance.ChangeScore(1);
-        }
-    }
+        life -= damages;
 
-    void Die()
-    {
-        //Life decreases
-        Destroy(gameObject);
+        if (life <= 0)
+        {
+            ScoreScript.instance.ChangeScore("money", 15);
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
