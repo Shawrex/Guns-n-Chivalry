@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5070634030722807884}
   - component: {fileID: 2308261622711469020}
-  - component: {fileID: 568542161503808541}
+  - component: {fileID: 7830594772243020816}
   m_Layer: 8
   m_Name: Renderer
   m_TagString: Enemy
@@ -169,8 +169,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &568542161503808541
-CapsuleCollider2D:
+--- !u!58 &7830594772243020816
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,5 +183,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5, y: 0.75}
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 0.325

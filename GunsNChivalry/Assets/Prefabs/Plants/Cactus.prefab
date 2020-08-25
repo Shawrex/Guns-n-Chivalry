@@ -219,10 +219,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 1
   fireRate: 0.75
-  numberOfShots: 4
+  numberOfShots: 3
   pierce: 0
   force: 10
-  range: 1.5
+  range: 1
   bulletPrefab: {fileID: 6177364952043789008, guid: 0926d1fa6be56d540a302896ed1f05b7,
     type: 3}
   rangeObject: {fileID: 2070477482588674699}

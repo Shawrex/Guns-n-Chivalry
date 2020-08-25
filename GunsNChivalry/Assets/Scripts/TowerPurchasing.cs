@@ -8,10 +8,12 @@ public class TowerPurchasing : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private Sprite paquerette = null;
     [SerializeField] private Sprite cactus = null;
+    [SerializeField] private Sprite rose = null;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject paquerettePrefab = null;
     [SerializeField] private GameObject cactusPrefab = null;
+    [SerializeField] private GameObject rosePrefab = null;
 
     [Header("Misc")]
     [SerializeField] private GameObject cursorObject = null;
@@ -51,6 +53,11 @@ public class TowerPurchasing : MonoBehaviour
             cursorObjectRenderer.sprite = cactus;
             playerRange.SetActive(true);
         }
+        else if (towerName == "rose" && ScoreScript.instance.money >= Rose.price)
+        {
+            cursorObjectRenderer.sprite = rose;
+            playerRange.SetActive(true);
+        }
     }
 
     private void Update()
@@ -84,6 +91,12 @@ public class TowerPurchasing : MonoBehaviour
                 {
                     GameObject p = Instantiate(cactusPrefab, cursorObject.transform.position, Quaternion.identity);
                     ScoreScript.instance.ChangeScore("money", -Cactus.price);
+                    plants.Add(p);
+                }
+                else if (cursorObjectRenderer.sprite == rose)
+                {
+                    GameObject p = Instantiate(rosePrefab, cursorObject.transform.position, Quaternion.identity);
+                    ScoreScript.instance.ChangeScore("money", -Rose.price);
                     plants.Add(p);
                 }
 

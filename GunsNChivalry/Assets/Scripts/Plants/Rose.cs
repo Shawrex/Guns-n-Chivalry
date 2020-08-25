@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Paquerette : MonoBehaviour
+public class Rose : MonoBehaviour
 {
     [Header("Stats")]
-    public static int price = 100;
+    public static int price = 200;
     [SerializeField] private int damages = 0;
     [SerializeField] private float fireRate = 0f;
-    [SerializeField] private int pierce = 0;
-    [SerializeField] private float force = 0f;
+    [SerializeField] private int pierce;
     [SerializeField] private float range = 0f;
 
     [Header("Misc")]
-    [SerializeField] private GameObject bulletPrefab = null;
     [SerializeField] private GameObject rangeObject = null;
     private bool canShoot = true;
     private GameObject target = null;
@@ -29,11 +26,11 @@ public class Paquerette : MonoBehaviour
     {
         Targeting();
 
-        if(canShoot && target != null)
+        if (canShoot && target != null)
             StartCoroutine(Shoot());
     }
 
-    private void Targeting()
+    void Targeting()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range);
 
@@ -41,16 +38,23 @@ public class Paquerette : MonoBehaviour
             target = null;
         else if (enemies.Length > 0)
         {
-            int best = 0, index = 0, i = 0;
+            int bestL = 0, bestD = 0, index = 0, i = 0;
 
             foreach (Collider2D e in enemies)
             {
                 EnemyPathFollow epf = e.GetComponent<EnemyPathFollow>();
                 if (epf != null)
                 {
-                    if (epf.distance > best)
+                    if (epf.life > bestL)
                     {
-                        best = (int)epf.distance;
+                        bestL = epf.life;
+                        bestD = (int)epf.distance;
+                        index = i;
+                    }
+                    else if (epf.life == bestL && epf.distance > bestD)
+                    {
+                        bestL = epf.life;
+                        bestD = (int)epf.distance;
                         index = i;
                     }
                 }
@@ -67,10 +71,7 @@ public class Paquerette : MonoBehaviour
     {
         canShoot = false;
 
-        Vector2 forceDirection = (target.transform.position - transform.position).normalized;
-
-        GameObject b = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        b.GetComponent<BulletScript>().Setup(forceDirection * force, damages, range, pierce);
+        target.GetComponent<EnemyPathFollow>().TakeDamges(damages);
 
         yield return new WaitForSeconds(fireRate);
 

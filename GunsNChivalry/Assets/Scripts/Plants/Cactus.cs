@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cactus : MonoBehaviour
 {
     [Header("Stats")]
-    public static int price = 0;
+    public static int price = 175;
     [SerializeField] private int damages = 0;
     [SerializeField] private float fireRate = 0f;
     [SerializeField] private float numberOfShots = 0f;
@@ -39,8 +39,6 @@ public class Cactus : MonoBehaviour
     {
         canShoot = false;
 
-        print("shoot");
-
         for (int i = 0; i < numberOfShots; i++)
         {
             float angle = 360 / numberOfShots * i;
@@ -53,10 +51,5 @@ public class Cactus : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
 
         canShoot = true;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

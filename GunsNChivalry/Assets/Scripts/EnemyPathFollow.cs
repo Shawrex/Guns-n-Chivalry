@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyPathFollow : MonoBehaviour
 {
-    [SerializeField] private int life;
+    [SerializeField] public int life;
     [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private int lastPoint = 0;
     public long distance;
