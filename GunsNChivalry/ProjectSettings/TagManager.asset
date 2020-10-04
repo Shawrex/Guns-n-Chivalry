@@ -12,6 +12,7 @@ TagManager:
   - Plant
   - PlantUI
   - TurretUI
+  - Farmcell
   layers:
   - Default
   - TransparentFX

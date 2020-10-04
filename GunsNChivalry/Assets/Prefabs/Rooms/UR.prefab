@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 8829796950474161640, guid: 0382d137aaab6d24f87db634f014e18d,
     type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -208,7 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc1d7b7d26b2af4f8e584cf722734c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathNumbers: 7
   roomPath: []
   roomPathRender: []
   pathPoint: {fileID: 8626534934163800189, guid: 3b33a2b83f5d1b44894021c9d0b4e9e5,
@@ -219,6 +218,7 @@ MonoBehaviour:
   - {fileID: 7572010606446714288, guid: 2876400b20e9a394c9543f021aa77a10, type: 3}
   spawnTime: 0.5
   waveSpawnCount: 20
+  enemiesAlive: []
 --- !u!1 &7865090483445586388
 GameObject:
   m_ObjectHideFlags: 0

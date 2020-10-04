@@ -1,61 +1,34 @@
 fileFormatVersion: 2
-guid: 9202f0486777e734eaf883381a2bb7d2
+guid: 51908c4b494460c43b690b8c753ef192
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3527876879021525145
-    second: plants_0
+      213: 1022149739676813633
+    second: paquerette_0
   - first:
-      213: -1927889906097043966
-    second: plants_1
+      213: -5291815695447420700
+    second: paquerette_1
   - first:
-      213: 5004531278555049960
-    second: plants_2
+      213: 5034100293135003132
+    second: paquerette_2
   - first:
-      213: -5395861003456798081
-    second: plants_3
+      213: 6217110625775449780
+    second: paquerette_3
   - first:
-      213: -6800931340347744238
-    second: plants_4
+      213: -5171841941716734407
+    second: paquerette_4
   - first:
-      213: 3017316628048636319
-    second: plants_5
+      213: -7887760260422548887
+    second: paquerette_5
   - first:
-      213: -112360752608999789
-    second: plants_0
+      213: 3143213764868548443
+    second: paquerette_6
   - first:
-      213: 5430815288348974675
-    second: plants_1
+      213: 4842725719145137409
+    second: paquerette_7
   - first:
-      213: 2083786640328684553
-    second: plants_2
-  - first:
-      213: 4097983668974947373
-    second: plants_3
-  - first:
-      213: 1855442389557454704
-    second: plants_4
-  - first:
-      213: -7247032426301207642
-    second: plants_5
-  - first:
-      213: -4350115279957141132
-    second: plants_6
-  - first:
-      213: -810785574404401188
-    second: plants_7
-  - first:
-      213: -3030608088069509471
-    second: plants_8
-  - first:
-      213: -5568842699155709627
-    second: plants_9
-  - first:
-      213: -2185335503829088403
-    second: plants_10
-  - first:
-      213: 6915438452729039185
-    second: plants_11
+      213: -3289543889437805681
+    second: paquerette_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,70 +114,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plants_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3968b06ad70d07ef0800000000000000
-      internalID: -112360752608999789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: plants_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35e1dc62bb12e5b40800000000000000
-      internalID: 5430815288348974675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: plants_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 904fe74b8e81bec10800000000000000
-      internalID: 2083786640328684553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: plants_3
+      name: paquerette_0
       rect:
         serializedVersion: 2
         x: 0
@@ -218,14 +128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2c8a945f66fed830800000000000000
-      internalID: 4097983668974947373
+      spriteID: 149c1bcc5c76f2e00800000000000000
+      internalID: 1022149739676813633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_4
+      name: paquerette_1
       rect:
         serializedVersion: 2
         x: 16
@@ -239,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07726c2d50bdfb910800000000000000
-      internalID: 1855442389557454704
+      spriteID: 4e0150889a1bf86b0800000000000000
+      internalID: -5291815695447420700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_5
+      name: paquerette_2
       rect:
         serializedVersion: 2
         x: 32
@@ -260,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ab449a976e5d6b90800000000000000
-      internalID: -7247032426301207642
+      spriteID: cfd60087b87bcd540800000000000000
+      internalID: 5034100293135003132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_6
+      name: paquerette_3
       rect:
         serializedVersion: 2
         x: 0
@@ -281,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 479d726633941a3c0800000000000000
-      internalID: -4350115279957141132
+      spriteID: 4b6f6aaac2d974650800000000000000
+      internalID: 6217110625775449780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_7
+      name: paquerette_4
       rect:
         serializedVersion: 2
         x: 16
@@ -302,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd75d98d0d28fb4f0800000000000000
-      internalID: -810785574404401188
+      spriteID: 93ee185d72de938b0800000000000000
+      internalID: -5171841941716734407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_8
+      name: paquerette_5
       rect:
         serializedVersion: 2
         x: 32
@@ -323,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aee031300e11f5d0800000000000000
-      internalID: -3030608088069509471
+      spriteID: 962421495db098290800000000000000
+      internalID: -7887760260422548887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_9
+      name: paquerette_6
       rect:
         serializedVersion: 2
         x: 0
@@ -344,17 +254,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 541ebc2f11f77b2b0800000000000000
-      internalID: -5568842699155709627
+      spriteID: b57ab140440fe9b20800000000000000
+      internalID: 3143213764868548443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_10
+      name: paquerette_7
       rect:
         serializedVersion: 2
-        x: 16
+        x: 17
         y: 0
         width: 16
         height: 16
@@ -365,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d67c73b00f02ca1e0800000000000000
-      internalID: -2185335503829088403
+      spriteID: 1054b4a3261d43340800000000000000
+      internalID: 4842725719145137409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plants_11
+      name: paquerette_8
       rect:
         serializedVersion: 2
         x: 32
@@ -386,8 +296,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 159cdf812a298ff50800000000000000
-      internalID: 6915438452729039185
+      spriteID: f83b005e2413952d0800000000000000
+      internalID: -3289543889437805681
       vertices: []
       indices: 
       edges: []

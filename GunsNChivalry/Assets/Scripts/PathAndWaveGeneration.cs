@@ -5,7 +5,7 @@ using UnityEngine;
 public class PathAndWaveGeneration : MonoBehaviour
 {
     [Header("Path")]
-    [SerializeField] private int pathNumbers = 0;
+    private int pathPointsNum;
     public List<Transform> roomPath = null;
     public List<GameObject> roomPathRender = null;
     private Vector2 pos;
@@ -16,22 +16,65 @@ public class PathAndWaveGeneration : MonoBehaviour
     [SerializeField] private GameObject[] enemiesPrefabs = null;
     [SerializeField] private float spawnTime = 0f;
     [SerializeField] private int waveSpawnCount = 0;
-    private List<GameObject> enemiesSPawned;
     private bool spawned = false;
+
+    public List<GameObject> enemiesAlive = new List<GameObject>();
 
     void Awake()
     {
+        Physics2D.IgnoreLayerCollision(0, 8);
+        Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(8, 9);
+
+        if (gameObject.name != "Base")
+        {
+            SetupRoom();
+
+            GeneratePath();
+
+            Exited();
+        }
+    }
+
+    private void SetupRoom()
+    {
+        int difficulty = Random.Range(0, 3);
+
+        switch (difficulty)
+        {
+            case 0: //EASY
+                pathPointsNum = Random.Range(8, 10);
+                waveSpawnCount = Random.Range(15, 20);
+                spawnTime = Random.Range(0.5f, 0.75f);
+                break;
+
+            case 1: //MEDIUM
+                pathPointsNum = Random.Range(6, 8);
+                waveSpawnCount = Random.Range(15, 25);
+                spawnTime = Random.Range(0.25f, 0.75f);
+                break;
+
+            case 2: //HARD
+                pathPointsNum = Random.Range(5, 6);
+                waveSpawnCount = Random.Range(20, 30);
+                spawnTime = Random.Range(0.25f, 0.5f);
+                break;
+        }
+    }
+
+    void GeneratePath()
+    {
         Transform[] children = GetComponentsInChildren<Transform>();
 
-        for (int i = 0; i < pathNumbers; i++)
+        for (int i = 0; i < pathPointsNum; i++)
         {
-            if (i == 0 || i == pathNumbers - 1)
+            if (i == 0 || i == pathPointsNum - 1)
             {
-                pos = children[Random.Range(1, children.Length)].localPosition.normalized;
+                pos = children[UnityEngine.Random.Range(1, children.Length)].localPosition.normalized;
                 pos = new Vector2(pos.x * 9.1f, pos.y * 5.1f);
             }
             else
-                pos = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f));
+                pos = new Vector2(UnityEngine.Random.Range(-7f, 7f), UnityEngine.Random.Range(-4f, 4f));
 
 
             GameObject p = Instantiate(pathPoint, transform);
@@ -39,7 +82,7 @@ public class PathAndWaveGeneration : MonoBehaviour
             roomPath.Add(p.transform);
         }
 
-        for (int i = 0; i < pathNumbers - 1; i++)
+        for (int i = 0; i < pathPointsNum - 1; i++)
         {
             Vector2 pos1 = roomPath[i].localPosition;
             Vector2 pos2 = roomPath[i + 1].localPosition;
@@ -50,32 +93,16 @@ public class PathAndWaveGeneration : MonoBehaviour
             r.transform.localScale = new Vector3(Vector2.Distance(pos1, pos2), 0.1f, 1f);
             roomPathRender.Add(r);
         }
-
-        Physics2D.IgnoreLayerCollision(0, 8);
-        Physics2D.IgnoreLayerCollision(8, 8);
-        Physics2D.IgnoreLayerCollision(8, 9);
-
-        if (gameObject.name != "Base")
-            Exited();
-
-        //FOR TEST PURPOSE ONLY
-        //StartCoroutine(Wave());
     }
 
     public void Exited()
     {
-        foreach (Transform p in roomPath)
-            p.gameObject.SetActive(false);
-
         foreach (GameObject r in roomPathRender)
             r.SetActive(false);
     }
 
     public void Entered()
     {
-        foreach (Transform p in roomPath)
-            p.gameObject.SetActive(true);
-
         foreach (GameObject r in roomPathRender)
             r.SetActive(true);
     }
@@ -90,7 +117,7 @@ public class PathAndWaveGeneration : MonoBehaviour
             {
                 yield return new WaitForSeconds(spawnTime);
                 Vector3 spawn = new Vector3(roomPath[0].position.x, roomPath[0].position.y, roomPath[0].position.z - 1f);
-                Instantiate(enemiesPrefabs[0], spawn, Quaternion.identity);
+                enemiesAlive.Add(Instantiate(enemiesPrefabs[0], spawn, Quaternion.identity));
             }
 
             spawned = true;

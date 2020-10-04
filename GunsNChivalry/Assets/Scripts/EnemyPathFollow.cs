@@ -1,31 +1,37 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class EnemyPathFollow : MonoBehaviour
 {
-    [SerializeField] public int life;
+    public int life;
     [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private int lastPoint = 0;
     public long distance;
     private Vector2 moveVec;
     private Rigidbody2D rb;
     PathAndWaveGeneration room;
+    private List<Transform> pathToFollow = new List<Transform>();
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         room = RoomsTemplates.instance.roomsSpawned[RoomsTemplates.instance.currentRoom].GetComponent<PathAndWaveGeneration>();
+        pathToFollow = room.roomPath;
     }
 
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("Point"))
         {
-            if (lastPoint == room.roomPath.Count - 1)
+            if (lastPoint == pathToFollow.Count - 1)
+            {
+                room.enemiesAlive.Remove(gameObject);
                 Destroy(gameObject);
-            else if (room.roomPath.IndexOf(c.transform) == lastPoint)
+            }
+            else if (pathToFollow.IndexOf(c.transform) == lastPoint)
                 lastPoint++;
         }
     }
@@ -36,7 +42,6 @@ public class EnemyPathFollow : MonoBehaviour
 
         if (life <= 0)
         {
-            ScoreScript.instance.ChangeScore("money", 15);
             Destroy(gameObject);
         }
     }
@@ -45,7 +50,7 @@ public class EnemyPathFollow : MonoBehaviour
     {
         if (lastPoint >= 0)
         {
-            Vector2 moveDir = room.roomPath[lastPoint].position - transform.position;
+            Vector2 moveDir = pathToFollow[lastPoint].position - transform.position;
             moveVec = moveDir.normalized * moveSpeed;
         }
 

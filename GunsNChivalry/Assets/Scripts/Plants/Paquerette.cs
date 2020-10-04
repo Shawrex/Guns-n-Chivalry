@@ -2,44 +2,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Paquerette : MonoBehaviour
+public class Paquerette : MonoBehaviour, IPlantsInterface
 {
     [Header("Stats")]
-    public static int price = 100;
-    [SerializeField] private int damages = 0;
+    [SerializeField] private float damages = 0;
     [SerializeField] private float fireRate = 0f;
-    [SerializeField] private int pierce = 0;
+    [SerializeField] private float pierce = 0;
     [SerializeField] private float force = 0f;
     [SerializeField] private float range = 0f;
 
     [Header("Misc")]
     [SerializeField] private GameObject bulletPrefab = null;
     [SerializeField] private GameObject rangeObject = null;
+    [SerializeField] private SpriteRenderer sr = null;
     private bool canShoot = true;
-    private GameObject target = null;
 
     [Header("Evolution")]
-    [SerializeField] private Sprite stage1;
-    [SerializeField] private Sprite stage2;
+    public int stage;
+    private bool isGrowing = false;
+    [SerializeField] private float growTime = 0f;
+    [SerializeField] private Image growGraph = null;
+    public Sprite stage1;
+    public Sprite stage2;
 
-    private void Start() => rangeObject.transform.localScale = new Vector3(range * 2f, range * 2f, 1f);
+
+
+    private void Start()
+    {
+        rangeObject.transform.localScale = new Vector3(range * 2f, range * 2f, 1f);
+    }
 
     void Update()
     {
-        Targeting();
+        if(canShoot)
+            Targeting();
 
-        if(canShoot && target != null)
-            StartCoroutine(Shoot());
+        if (isGrowing)
+        {
+            growGraph.fillAmount += 1 / (growTime * (stage + 1)) * Time.deltaTime;
+            growGraph.color = new Color(1f, 1f, 1f, 1 / (growTime * (stage + 1)) * Time.deltaTime + growGraph.color.a);
+        }
+
     }
 
-    private void Targeting()
+    void Targeting()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range);
 
-        if (enemies.Length <= 0)
-            target = null;
-        else if (enemies.Length > 0)
+        if (enemies.Length > 0)
         {
             int best = 0, index = 0, i = 0;
 
@@ -59,11 +71,11 @@ public class Paquerette : MonoBehaviour
             }
 
             if (enemies[index].gameObject.CompareTag("Enemy"))
-                target = enemies[index].gameObject;
+                StartCoroutine(Shoot(enemies[index].gameObject));
         }
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot(GameObject target)
     {
         canShoot = false;
 
@@ -76,4 +88,44 @@ public class Paquerette : MonoBehaviour
 
         canShoot = true;
     }
+
+    void IPlantsInterface.Select(bool isSelected) { rangeObject.SetActive(isSelected); }
+
+    IEnumerator IPlantsInterface.Grow()
+    {
+        if (stage < 2)
+        {
+            isGrowing = true;
+
+            if (stage == 1)
+                growGraph.sprite = stage2;
+
+            yield return new WaitForSeconds(growTime * (stage + 1));
+
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
+        damages += 0.5f;
+        fireRate -= 0.075f;
+        pierce += 0.5f;
+        force += 2;
+        range += 0.5f;
+
+        stage++;
+
+        if (stage == 1)
+            sr.sprite = stage1;
+        else
+            sr.sprite = stage2;
+
+        isGrowing = false;
+        growGraph.fillAmount = 0f;
+    }
+
+    int IPlantsInterface.GetType() { return 0; }
+
+    int IPlantsInterface.GetStage() { return stage; }
 }
